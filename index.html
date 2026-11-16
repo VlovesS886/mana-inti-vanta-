@@ -25,7 +25,7 @@ header{background:#0f7a3f;color:#fff;padding:12px;text-align:center}
 </style>
 </head>
 <body>
-<header><img src="IMG-20261115-WA3083.jpg" style="width:50px;height:50px;border-radius:50%;border:2px solid white;margin-right:10px;vertical-align:middle;"><b>Mana Inti Vanta 🍛<br><small>Upal, Hyderabad - 9494706688</small></b></header>
+<header><img src="IMG-20261115-WA3083.jpg" style="width:50px;height:50px;border-radius:50%;border:2px solid white;margin-right:10px;vertical-align:middle;"><b>Mana Inti Vanta 🍛<br><small>Upal, Hyderabad - 8143184265</small></b></header>
 <div class="hero"><h2>Roju Tiffins & Meals</h2><p>Fresh ga inti vantalu</p></div>
 <div class="tabs"><button class="tab active" onclick="filter('all')">Anni</button><button class="tab" onclick="filter('tiffin')">Tiffins</button><button class="tab" onclick="filter('meals')">Meals</button><button class="tab" onclick="filter('curry')">Curries</button></div>
 <div class="grid" id="grid"></div>
@@ -36,7 +36,7 @@ let items=[{name:"Idli (4)",price:40,cat:"tiffin",img:"https://images.unsplash.c
 function render(list=items){let g=document.getElementById('grid');g.innerHTML='';list.forEach((it,i)=>{g.innerHTML+=`<div class="card"><img src="${it.img}"><div class="card-body"><b>${it.name}</b><div class="price"><span>₹${it.price}</span><button class="add" onclick="add(${i})">Add</button></div></div></div>`})}
 function filter(c){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));event.target.classList.add('active');if(c=='all')render();else render(items.filter(x=>x.cat==c))}
 function add(i){cart.push(items[i]);total+=items[i].price;document.getElementById('total').innerText='₹'+total;document.getElementById('count').innerText=cart.length+' items';}
-function order(){if(cart.length==0){alert('Cart empty!');return;}let msg='Namaste! Order:%0A';cart.forEach(x=>msg+=x.name+' - ₹'+x.price+'%0A');msg+='Total: ₹'+total;window.open('https://wa.me/91XXXXXXXXXX?text='+msg)}
+function order(){if(cart.length==0){alert('Cart empty!');return;}let msg='Namaste! Order:%0A';cart.forEach(x=>msg+=x.name+' - ₹'+x.price+'%0A');msg+='Total: ₹'+total;window.open('https://wa.me/918143184265?text='+msg)}
 render();
 </script>
 <script>
