@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mana Inti Vanta - Upal</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#fff8f0}
+header{background:#0f7a3f;color:#fff;padding:14px;display:flex;justify-content:space-between}
+.hero{background:#0a5a2e;color:#fff;padding:20px;text-align:center}
+.tabs{display:flex;gap:8px;padding:12px;overflow:auto}
+.tab{padding:8px 14px;border-radius:20px;border:1px solid #ddd;background:#fff}
+.tab.active{background:#ff6b00;color:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px;padding-bottom:90px}
+.card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.1)}
+.card img{width:100%;height:100px;object-fit:cover}
+.card-body{padding:10px}
+.price{display:flex;justify-content:space-between;margin-top:6px}
+.add{background:#0f7a3f;color:#fff;border:0;padding:5px 10px;border-radius:8px}
+.footer{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:12px;display:flex;justify-content:space-between;box-shadow:0 -4px 20px rgba(0,0,0,.1)}
+.order{background:#ff6b00;color:#fff;border:0;padding:10px 18px;border-radius:10px;font-weight:700}
+</style>
+</head>
+<body>
+<header><b>Mana Inti Vanta 🍛<br><small>Upal Home Made</small></b><span id="cartCount">Cart 0</span></header>
+<div class="hero"><h2>Roju Tiffins & Meals</h2><p>Me intlo vanta, mee intiki</p><p>📍 Upal | Free Delivery 199+</p></div>
+<div class="tabs"><button class="tab active" onclick="filterCat('all',this)">All</button><button class="tab" onclick="filterCat('tiffin',this)">Tiffins</button><button class="tab" onclick="filterCat('meals',this)">Meals</button><button class="tab" onclick="filterCat('curry',this)">Curries</button></div>
+<div class="grid" id="grid"></div>
+<div class="footer"><div><b id="total">₹0</b><br><small id="items">0 items</small></div><button class="order" onclick="orderWA()">WhatsApp Order</button></div>
+<script>
+const items=[{id:1,name:"Idli (4)",price:40,cat:"tiffin",img:"https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=400"},{id:2,name:"Dosa",price:50,cat:"tiffin",img:"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=400"},{id:3,name:"Pesarattu",price:60,cat:"tiffin",img:"https://images.unsplash.com/photo-1610192244261-3f33de84d72e?w=400"},{id:4,name:"Veg Meals",price:99,cat:"meals",img:"https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400"},{id:5,name:"Non-Veg Meals",price:149,cat:"meals",img:"https://images.unsplash.com/photo-1505253758473-96b7015fcd40?w=400"},{id:6,name:"Pappu Annam",price:70,cat:"curry",img:"https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400"},{id:7,name:"Chicken Curry",price:120,cat:"curry",img:"https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400"},{id:8,name:"Sambar Rice",price:60,cat:"meals",img:"https://images.unsplash.com/photo-1596797038530-2c107229654b?w=400"}];
+let cart={};let curCat='all';
+function render(){let f=curCat=='all'?items:items.filter(i=>i.cat==curCat);document.getElementById('grid').innerHTML=f.map(it=>`<div class="card"><img src="${it.img}"><div class="card-body"><b>${it.name}</b><div class="price"><b>₹${it.price}</b><button class="add" onclick="add(${it.id})">${cart[it.id]?cart[it.id]+' ✓':'Add +'}</button></div></div></div>`).join('');updateCart();}
+function add(id){cart[id]=(cart[id]||0)+1;render();}
+function filterCat(c,el){curCat=c;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');render();}
+function updateCart(){let total=0,count=0;for(let k in cart){let it=items.find(x=>x.id==k);total+=it.price*cart[k];count+=cart[k];}document.getElementById('cartCount').innerText='Cart '+count;document.getElementById('total').innerText='₹'+total;document.getElementById('items').innerText=count+' items';}
+function orderWA(){if(Object.keys(cart).length==0){alert('Cart empty!');return;}let msg="Namaste Mana Inti Vanta! Order:%0A";let total=0;for(let k in cart){let it=items.find(x=>x.id==k);msg+=`${it.name} x ${cart[k]} = ${it.price*cart[k]}%0A`;total+=it.price*cart[k];}msg+=`Total: ${total}%0AAddress:`;window.open(`https://wa.me/916300000000?text=${msg}`,'_blank');}
+render();
+</script>
+</body>
+</html>
