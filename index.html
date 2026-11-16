@@ -36,7 +36,7 @@ let items=[{name:"Idli (4)",price:40,cat:"tiffin",img:"https://images.unsplash.c
 function render(list=items){let g=document.getElementById('grid');g.innerHTML='';list.forEach((it,i)=>{g.innerHTML+=`<div class="card"><img src="${it.img}"><div class="card-body"><b>${it.name}</b><div class="price"><span>₹${it.price}</span><button class="add" onclick="add(${i})">Add</button></div></div></div>`})}
 function filter(c){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));event.target.classList.add('active');if(c=='all')render();else render(items.filter(x=>x.cat==c))}
 function add(i){cart.push(items[i]);total+=items[i].price;document.getElementById('total').innerText='₹'+total;document.getElementById('count').innerText=cart.length+' items';}
-function order(){if(cart.length==0){alert('Cart empty!');return;}let msg='Namaste! Order:%0A';cart.forEach(x=>msg+=x.name+' - ₹'+x.price+'%0A');msg+='Total: ₹'+total;window.open('https://wa.me/918143184265?text='+msg)}
+ction order(){alert('🔒 FSSAI License Kosam Waiting - Orders Soon! Call: 8143184265');return;}
 render();
 </script>
 <script>
